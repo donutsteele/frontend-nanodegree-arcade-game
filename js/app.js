@@ -29,12 +29,39 @@ class Avatar{
     constructor() {
         this.x = 0;
         this.y = 0;
+        //starting position at top left of screen (0, 0)
+        //potential feature: replace this.sprite with template literal to allow avatar selection 
         this.sprite = 'images/char-boy.png';
 
     }
 
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+
+    handleInput(input) {
+      switch(input){
+          case 'left':
+          this.x -= 60;
+          break;
+
+          case 'right':
+          this.x += 60;
+          break;
+
+          case 'up':
+          this.y -= 60;
+          break;
+
+          case 'down':
+          this.y += 60;
+          break;
+
+      }
+    }
+
+    update() {
+
     }
 }
 
@@ -56,5 +83,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-   ///// player.handleInput(allowedKeys[e.keyCode]);
+    player.handleInput(allowedKeys[e.keyCode]);
 });
