@@ -25,6 +25,20 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+class Avatar{
+    constructor() {
+        this.x = 0;
+        this.y = 0;
+        this.sprite = 'images/char-boy.png';
+
+    }
+
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+}
+
+const player = new Avatar();
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
@@ -42,5 +56,5 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+   ///// player.handleInput(allowedKeys[e.keyCode]);
 });
