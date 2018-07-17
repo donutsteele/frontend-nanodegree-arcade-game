@@ -27,8 +27,10 @@ Enemy.prototype.render = function() {
 
 class Avatar{
     constructor() {
-        this.x = 0;
-        this.y = 0;
+        this.moveRow = 83;
+        this.moveCol = 101;
+        this.x = 203;
+        this.y = 380;
         //starting position at top left of screen (0, 0)
         //potential feature: replace this.sprite with template literal to allow avatar selection 
         this.sprite = 'images/char-boy.png';
