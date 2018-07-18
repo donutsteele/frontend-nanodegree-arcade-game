@@ -22,8 +22,7 @@ Enemy.prototype.render = function() {
 };
 
 // Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+// This class requires an update()
 
 class Avatar{
     constructor() {
@@ -32,6 +31,7 @@ class Avatar{
         this.x = 203;
         this.y = 380;
         //starting position at top left of screen (0, 0)
+        //new starting position at center block of bottom row (203,380)
         //potential feature: replace this.sprite with template literal to allow avatar selection 
         this.sprite = 'images/char-boy.png';
 
@@ -44,21 +44,29 @@ class Avatar{
     handleInput(input) {
       switch(input){
 
-        // 1 col = 101 px, 1 row = 83 px 
           case 'left':
-          this.x -= this.moveRow;
+          if (this.x > 3){
+            this.x -= this.moveRow;
+          }
+
           break;
 
           case 'right':
-          this.x += this.moveRow;
+          if (this.x < 403) {
+            this.x += this.moveRow;
+            }
           break;
 
           case 'up':
-          this.y -= this.moveCol;
+          if (this.y > 0){
+            this.y -= this.moveCol;
+          }
           break;
 
           case 'down':
+          if (this.y < 380){
           this.y += this.moveCol;
+          }
           break;
 
       }
