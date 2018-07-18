@@ -27,8 +27,8 @@ Enemy.prototype.render = function() {
 
 class Avatar{
     constructor() {
-        this.moveRow = 83;
-        this.moveCol = 101;
+        this.moveRow = 100;
+        this.moveCol = 83;
         this.x = 203;
         this.y = 380;
         //starting position at top left of screen (0, 0)
@@ -43,20 +43,22 @@ class Avatar{
 
     handleInput(input) {
       switch(input){
+
+        // 1 col = 101 px, 1 row = 83 px 
           case 'left':
-          this.x -= 60;
+          this.x -= this.moveRow;
           break;
 
           case 'right':
-          this.x += 60;
+          this.x += this.moveRow;
           break;
 
           case 'up':
-          this.y -= 60;
+          this.y -= this.moveCol;
           break;
 
           case 'down':
-          this.y += 60;
+          this.y += this.moveCol;
           break;
 
       }
