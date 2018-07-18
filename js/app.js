@@ -1,13 +1,17 @@
 // Enemies our player must avoid
 class Enemy {
     constructor() {
-        this.x = 0;
-        this.y =0;
+        this.x = -83;
+        this.y = 45;
+        this.moveStep = 83;
+
+        //enemy valid y positions:45, 128, 211
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+
     this.sprite = 'images/enemy-bug.png';
     }
     render (){
@@ -15,19 +19,25 @@ class Enemy {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
-    // update(dt){
-
-    // };
+    update(dt){
+    if (this.x < this.moveStep * 6.5){
+        this.x += 100*(dt)
+    } else {
+        this.x = -83
+    }
+    };
 
 }
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-};
+// Enemy.prototype.update = function(dt) {
+//     // You should multiply any movement by the dt parameter
+//     // which will ensure the game runs at the same speed for
+//     // all computers.
+
+
+// };
 
 
 
