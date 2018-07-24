@@ -1,8 +1,8 @@
 // Enemies our player must avoid
 class Enemy {
-    constructor() {
-        this.x = -83;
-        this.y = 45;
+    constructor(x,y) {
+        this.x =x;
+        this.y = y + 45;
         this.moveStep = 83;
 
         //enemy valid y positions:45, 128, 211
@@ -29,26 +29,15 @@ class Enemy {
 
 }
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-// Enemy.prototype.update = function(dt) {
-//     // You should multiply any movement by the dt parameter
-//     // which will ensure the game runs at the same speed for
-//     // all computers.
-
-
-// };
-
-
-
-
 // Now write your own player class
 // This class requires an update()
 
-class Avatar{
+class Avatar {
     constructor() {
         this.moveRow = 100;
         this.moveCol = 83;
+        this.startX = 203;
+        this.startY = 380;
         this.x = 203;
         this.y = 380;
         //starting position at top left of screen (0, 0)
@@ -93,15 +82,30 @@ class Avatar{
       }
     }
 
-    // update(dt) {
+    update() {
+        for(let enemy of allEnemies){
+            if(this.y === enemy.y && (enemy.x + enemy.moveStep/1.75 > this.x && enemy.x + enemy.moveStep/1.75 < (this.x + this.moveCol))){
+               this.reset();
+            }
+        }
+    }
+    
+    reset(){
+        this.x = this.startX;
+        this.y = this.startY; 
+    }
 
-    // }
 }
 
+///all x coordinates: [3, 103, 203, 303, 403] ONLY FOR PLAYER
+///all y coordinates: [380, 297, 214, 131, 48, -35]
+
 const player = new Avatar();
-const enemy1 = new Enemy();
+const enemy1 = new Enemy(0, 3);
+const enemy2 = new Enemy(0, 86);
+const enemy3 = new Enemy(0, 169);
 let allEnemies = [];
-allEnemies.push(enemy1);
+allEnemies.push(enemy1, enemy2, enemy3);
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
