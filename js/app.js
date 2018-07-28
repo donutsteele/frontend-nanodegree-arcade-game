@@ -1,27 +1,22 @@
-// Enemies our player must avoid
 class Enemy {
-    constructor(x,y) {
-        this.x =x;
-        this.y = y + 45;
-        this.moveStep = 83;
-
-        //enemy valid y positions:45, 128, 211
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
-
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-
-    this.sprite = 'images/enemy-bug.png';
+    constructor() {
+        this.x = 0; //zero, since this property is changed in the update method. 
+        this.yVar = [3, 86, 169] //All possible y-values that will collide with player
+        this.y = (this.yVar[Math.floor(Math.random()* this.yVar.length)]) + 45; //randomises y-position that enemy will occupy
+        this.moveStep = 100;
+        this.speed = (Math.floor(Math.random()*301)+100);
+        //This generates a random speed for each enemy between 100 and 300. From w3schools.com
+        this.sprite = 'images/enemy-bug.png';
     }
+
+
     render (){
-        // Draw the enemy on the screen, required method for game
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
     update(dt){
-    if (this.x < this.moveStep * 6.5){
-        this.x += 100*(dt)
+    if (this.x < this.moveStep * 5.5){
+        this.x += this.speed*(dt)
     } else {
         this.x = -83
     }
@@ -29,20 +24,17 @@ class Enemy {
 
 }
 
-// Now write your own player class
-// This class requires an update()
-
 class Avatar {
     constructor() {
-        this.moveRow = 100;
-        this.moveCol = 83;
+        this.moveX = 100;
+        this.moveY = 83;
         this.startX = 203;
         this.startY = 380;
         this.x = 203;
         this.y = 380;
+        this.win = false;
         //starting position at top left of screen (0, 0)
         //new starting position at center block of bottom row (203,380)
-        //potential feature: replace this.sprite with template literal to allow avatar selection 
         this.sprite = 'images/char-boy.png';
 
     }
@@ -56,26 +48,26 @@ class Avatar {
 
           case 'left':
           if (this.x > 3){
-            this.x -= this.moveRow;
+            this.x -= this.moveX;
           }
 
           break;
 
           case 'right':
           if (this.x < 403) {
-            this.x += this.moveRow;
+            this.x += this.moveX;
             }
           break;
 
           case 'up':
           if (this.y > 0){
-            this.y -= this.moveCol;
+            this.y -= this.moveY;
           }
           break;
 
           case 'down':
           if (this.y < 380){
-          this.y += this.moveCol;
+          this.y += this.moveY;
           }
           break;
 
@@ -84,9 +76,14 @@ class Avatar {
 
     update() {
         for(let enemy of allEnemies){
-            if(this.y === enemy.y && (enemy.x + enemy.moveStep/1.75 > this.x && enemy.x + enemy.moveStep/1.75 < (this.x + this.moveCol))){
+            if(this.y === enemy.y && (enemy.x + enemy.moveStep/1.75 > this.x && enemy.x + enemy.moveStep/1.55 < (this.x + this.moveY))){
                this.reset();
+               //dividing moveStep by an interger reduces the distance needed to detect a collision, making it more visually accurate. 
             }
+        }
+
+        if(this.y === -35){
+           this.win = true;
         }
     }
     
@@ -97,19 +94,14 @@ class Avatar {
 
 }
 
-///all x coordinates: [3, 103, 203, 303, 403] ONLY FOR PLAYER
-///all y coordinates: [380, 297, 214, 131, 48, -35]
-
 const player = new Avatar();
-const enemy1 = new Enemy(0, 3);
-const enemy2 = new Enemy(0, 86);
-const enemy3 = new Enemy(0, 169);
+const enemy1 = new Enemy();
+const enemy2 = new Enemy();
+const enemy3 = new Enemy();
+const enemy4 = new Enemy();
+const enemy5 = new Enemy();
 let allEnemies = [];
-allEnemies.push(enemy1, enemy2, enemy3);
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
+allEnemies.push(enemy1, enemy2, enemy3, enemy4, enemy5);
 
 
 
