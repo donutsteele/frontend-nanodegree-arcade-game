@@ -22,7 +22,19 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        id;
+
+    ////document selectors for modal elements
+    const modal = document.querySelector(".modal");
+    const replay = document.querySelector(".replay");
+
+    replay.addEventListener('click', function() {
+        modal.style.display = "none"
+        player.reset();
+        player.gameOver = false;
+        win.requestAnimationFrame(main);
+    });
 
     canvas.width = 505;
     canvas.height = 606;
@@ -55,7 +67,14 @@ var Engine = (function(global) {
         /* Use the browser's requestAnimationFrame function to call this
          * function again as soon as the browser is able to draw another frame.
          */
-        win.requestAnimationFrame(main);
+
+         //on win, stop displaying new animation frames after specific id frame to allow modal to appear
+        if(player.gameOver === true){
+            win.cancelAnimationFrame(id);
+            modal.style.display="block";
+        } else 
+        //if no win, continue animating
+        { id = win.requestAnimationFrame(main);}
     }
 
     /* This function does some initial setup that should only occur once,
@@ -157,12 +176,9 @@ var Engine = (function(global) {
          player.render();
     }
 
-    /* This function does nothing but it could have been a good place to
-     * handle game reset states - maybe a new game menu or a game over screen
-     * those sorts of things. It's only called once by the init() method.
-     */
+    
     function reset() {
-        // noop
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to

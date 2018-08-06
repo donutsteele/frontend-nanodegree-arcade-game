@@ -18,6 +18,7 @@ class Enemy {
     if (this.x < this.moveStep * 5.5){
         this.x += this.speed*(dt)
     } else {
+        //if x position is greater than step * 5.5, reset position to slightly offscreen. 
         this.x = -83
     }
     };
@@ -32,7 +33,7 @@ class Avatar {
         this.startY = 380;
         this.x = 203;
         this.y = 380;
-        this.win = false;
+        this.gameOver = false;
         //starting position at top left of screen (0, 0)
         //new starting position at center block of bottom row (203,380)
         this.sprite = 'images/char-boy.png';
@@ -45,7 +46,7 @@ class Avatar {
 
     handleInput(input) {
       switch(input){
-
+        //establish controls for the player, prevent them from moving offscreen. 
           case 'left':
           if (this.x > 3){
             this.x -= this.moveX;
@@ -81,13 +82,13 @@ class Avatar {
                //dividing moveStep by an interger reduces the distance needed to detect a collision, making it more visually accurate. 
             }
         }
-
         if(this.y === -35){
-           this.win = true;
+           this.gameOver = true; 
         }
     }
     
     reset(){
+        //moves player back to starting position
         this.x = this.startX;
         this.y = this.startY; 
     }
@@ -95,6 +96,7 @@ class Avatar {
 }
 
 const player = new Avatar();
+//since each enemy is generated seperately, they will have varying speeds and row positions. 
 const enemy1 = new Enemy();
 const enemy2 = new Enemy();
 const enemy3 = new Enemy();
