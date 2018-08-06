@@ -1,6 +1,22 @@
-frontend-nanodegree-arcade-game
-===============================
+# Arcade Game Clone
+An Udacity Front-End Nanodegree project by Ariel S. 
+=======================================
+## Contents 
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+*[Requirements](#requirements)
+*[Instructions](#Instructions)
+*[Refrences](#Refrences)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Requirements
+This application is designed for web browsers that support HTML5 and JavaScript ES6 syntax. It has been tested on the most recent versions of Chrome and Firefox. 
+
+##Instructions
+The objective of this game is to guide the player avatar safely across the road to the river with the arrow keys. Hitting an enemy will reset all progress, so be careful! 
+
+##Refrences
+### The following resources were used to aid in the completion of this project
+- [Matthew Cranford's Arcade Game Walkthrough part 5](https://matthewcranford.com/arcade-game-walkthrough-part-5-adding-enemies/)
+- [Matthew Cranford's Arcade Game Walkthrough part 6](https://matthewcranford.com/arcade-game-walkthrough-part-6-collisions-win-conditions-and-game-resets/)
+- [Basic Animation in HTML Canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_animations) by Mozilla Developer Network 
+
+
